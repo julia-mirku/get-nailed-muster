@@ -881,6 +881,47 @@ html.lb-lock,html.lb-lock body{overflow:hidden}
 @media (min-width:901px) and (min-height:700px){#atelier .set-grid>.stage{width:min(100%,calc((100svh - 280px)*.8),420px)!important}}
 
 /* 27.11 patch26 */#atelier #farbeNote{text-wrap:balance}
+
+/* 27.11 patch30 bg: Variante «heller» für den Salon im ersten Block */
+html.bg-hell .hero.b .bgwall img{opacity:.92;filter:brightness(1.06) saturate(1.18)}
+html.bg-hell .hero.b .bgwall:after{background:linear-gradient(90deg,rgba(28,9,16,.86) 0,rgba(28,9,16,.48) 42%,rgba(28,9,16,.06) 100%)}
+@media (max-width:900px){html.bg-hell .hero.b .bgwall:after{background:linear-gradient(180deg,rgba(28,9,16,.32),rgba(28,9,16,.86) 55%)}}
+.bgschalter{position:absolute;left:14px;bottom:60px;z-index:30;width:max-content;display:flex;align-items:center;gap:4px;padding:5px;border-radius:999px;background:rgba(255,250,244,.96);box-shadow:0 4px 12px -8px rgba(42,14,23,.5);font:500 12.5px/1 "Libre Franklin",system-ui,sans-serif;color:#2B2320}
+.bgschalter span{padding:0 8px 0 6px;opacity:.75}
+.bgschalter button{border:0;border-radius:999px;padding:7px 12px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.bgschalter button.on{background:#6E1A2E;color:#fff}
+@media (hover:hover){.bgschalter button:not(.on):hover{background:rgba(110,26,46,.1)}}
+@media (max-width:900px){.bgschalter{position:relative;left:auto;bottom:auto;margin:18px auto 6px;z-index:30}}
+
+/* 27.11 patch31 lay: Preis-Anordnung (Entwurf) */
+.layschalter{display:none}
+#layPreis{display:none}
+#atelier .sec-head{position:relative}
+@media (min-width:1200px){
+ .layschalter{display:flex;align-items:center;gap:3px;padding:4px;border-radius:999px;background:rgba(255,250,244,.96);box-shadow:0 6px 18px -12px rgba(42,14,23,.5);font:500 12.5px/1 "Libre Franklin",system-ui,sans-serif;color:#2B2320;position:absolute;z-index:4;white-space:nowrap}
+ .layschalter span{padding:0 8px 0 6px;opacity:.75}
+ .layschalter button{border:0;border-radius:999px;padding:7px 11px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+ .layschalter button.on{background:#6E1A2E;color:#fff}
+ #atelier[class*="lay-"] .stage-cap{display:none!important}
+ #atelier[class*="lay-"] .set-grid>.stage{width:min(calc((100svh - 150px)*.8),470px)!important;align-self:start}
+ #atelier[class*="lay-"] .stage .result.res-kopie{display:none!important}
+ #atelier[class*="lay-"] .set-grid{align-items:start}
+ /* Mitte / links: eigene Preis-Spalte */
+ #atelier.lay-mitte .set-grid{grid-template-columns:auto 230px minmax(0,1fr);gap:30px}
+ #atelier.lay-links .set-grid{grid-template-columns:230px auto minmax(0,1fr);gap:30px}
+ #atelier.lay-links #layPreis{order:-1}
+ #atelier.lay-mitte #layPreis,#atelier.lay-links #layPreis{display:flex;flex-direction:column;justify-content:flex-end;align-self:stretch;padding-bottom:0}
+ #layPreis .result{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin:0!important;padding:20px!important}
+ #layPreis .result>div{min-width:0!important;width:100%}
+ #layPreis .result .name,#layPreis .result .ex{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;overflow-wrap:anywhere}
+ #layPreis .result .name{height:auto!important;max-height:none!important;-webkit-line-clamp:unset!important;display:block!important;font-size:14px!important;line-height:1.45}
+ #atelier.lay-mitte .set-grid>div:last-child .result,#atelier.lay-links .set-grid>div:last-child .result{display:none!important}
+ #atelier.lay-rechts .set-grid>div:last-child .result{margin-top:2px!important;padding:10px 20px!important}
+ #layPreis .result .ex{height:auto!important;font-size:13px!important}
+ #layPreis .lp-k{font:500 11px/1 "Josefin Sans",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+ /* rechts: Original-Preisfeld unter der Auswahl sichtbar */
+ #atelier.lay-rechts .set-grid>div:last-child .result{opacity:1!important;pointer-events:auto!important}
+}
 </style>
 </head>
 <body>
@@ -3154,7 +3195,7 @@ const FR={natur:'11',
  'medium|mandel|farbe|rosa|none||||T4':'k_medium-mandel-set14_T4.webp',
  'medium|mandel|farbe|schwarz|none||||T4':'k_medium-mandel-set15_T4.webp',
  'medium|mandel|farbe|flieder|none||||T4':'k_medium-mandel-set16_T4.webp',
- 'medium|mandel|farbe|aqua|none||||T4':'k_medium-mandel-set17_T4.webp',
+ 'medium|mandel|farbe|aqua|none||||T4':'k_medium-mandel-set17_T4_v3.webp',
  'lang|eckig|farbe|schwarz|none||||T2':'k_lang-eckig-schwarz_T2.webp',
  'lang|eckig|farbe|schwarz|none||||T3':'k_lang-eckig-schwarz_T3.webp',
  'lang|eckig|farbe|schwarz|none||||T4':'k_lang-eckig-schwarz_T4.webp',
@@ -3494,9 +3535,9 @@ const FR={natur:'11',
  'medium|mandel|farbe|flieder|none||||T2':'k_medium-mandel-flieder_T2.webp',
  'medium|mandel|farbe|flieder|none||||T3':'k_medium-mandel-flieder_T3.webp',
  'medium|mandel|farbe|flieder|none||||T5':'k_medium-mandel-flieder_T5.webp',
- 'medium|mandel|farbe|aqua|none||||T2':'k_medium-mandel-aqua_T2.webp',
- 'medium|mandel|farbe|aqua|none||||T3':'k_medium-mandel-aqua_T3.webp',
- 'medium|mandel|farbe|aqua|none||||T5':'k_medium-mandel-aqua_T5.webp',
+ 'medium|mandel|farbe|aqua|none||||T2':'k_medium-mandel-aqua_T2_v3.webp',
+ 'medium|mandel|farbe|aqua|none||||T3':'k_medium-mandel-aqua_T3_v3.webp',
+ 'medium|mandel|farbe|aqua|none||||T5':'k_medium-mandel-aqua_T5_v3.webp',
  'lang|mandel|farbe|flieder|none||||T2':'k_lang-mandel-flieder_T2.webp',
  'lang|mandel|farbe|flieder|none||||T3':'k_lang-mandel-flieder_T3.webp',
  'lang|mandel|farbe|flieder|none||||T4':'k_lang-mandel-flieder_T4.webp',
@@ -3529,10 +3570,10 @@ const FR={natur:'11',
  'xl|mandel|farbe|schwarz|none||||T3':'k_xl-mandel-schwarz_T3.webp',
  'xl|mandel|farbe|schwarz|none||||T4':'k_xl-mandel-schwarz_T4.webp',
  'xl|mandel|farbe|schwarz|none||||T5':'k_xl-mandel-schwarz_T5.webp',
- 'xl|mandel|farbe|aqua|none||||T2':'k_xl-mandel-aqua_T2.webp',
- 'xl|mandel|farbe|aqua|none||||T3':'k_xl-mandel-aqua_T3.webp',
- 'xl|mandel|farbe|aqua|none||||T4':'k_xl-mandel-aqua_T4.webp',
- 'xl|mandel|farbe|aqua|none||||T5':'k_xl-mandel-aqua_T5.webp',
+ 'xl|mandel|farbe|aqua|none||||T2':'k_xl-mandel-aqua_T2_v2.webp',
+ 'xl|mandel|farbe|aqua|none||||T3':'k_xl-mandel-aqua_T3_v2.webp',
+ 'xl|mandel|farbe|aqua|none||||T4':'k_xl-mandel-aqua_T4_v2.webp',
+ 'xl|mandel|farbe|aqua|none||||T5':'k_xl-mandel-aqua_T5_v2.webp',
  'xl|mandel|farbe|flieder|none||||T2':'k_xl-mandel-flieder_T2.webp',
  'xl|mandel|farbe|flieder|none||||T3':'k_xl-mandel-flieder_T3.webp',
  'xl|mandel|farbe|flieder|none||||T4':'k_xl-mandel-flieder_T4.webp',
@@ -3632,7 +3673,7 @@ const FR={natur:'11',
  'xl|eckig|farbe|bordeaux|none':'c_xl-eckig-bordeaux.webp',
  'xl|eckig|farbe|rosa|none':'c_xl-eckig-rosa.webp',
  'xl|mandel|farbe|schwarz|none':'c_xl-mandel-schwarz.webp',
- 'xl|mandel|farbe|aqua|none':'c_xl-mandel-aqua.webp',
+ 'xl|mandel|farbe|aqua|none':'c_xl-mandel-aqua_v2.webp',
  'xl|mandel|farbe|flieder|none':'c_xl-mandel-flieder.webp',
  'xl|mandel|farbe|mauve|none':'c_xl-mandel-mauve.webp',
  'xl|mandel|farbe|bordeaux|none':'c_xl-mandel-bordeaux.webp',
@@ -3730,7 +3771,7 @@ const FR={natur:'11',
  'kurz|mandel|farbe|nude|none':'01','medium|mandel|farbe|nude|none':'02','lang|mandel|farbe|nude|none':'03','xl|mandel|farbe|nude|none':'04','medium|eckig|farbe|nude|none':'05','kurz|eckig|farbe|nude|none':'22','lang|eckig|farbe|nude|none':'23','xl|eckig|farbe|nude|none':'24',
  'medium|mandel|milky|-|none':'06','medium|mandel|french|-|none|nude|weiss':'07','medium|mandel|ombre|-|none':'08',
  'medium|mandel|farbe|mauve|cat':'09','medium|mandel|farbe|nude|chrome':'10','medium|mandel|farbe|nude|glitzer':'18',
- 'medium|mandel|farbe|rot|none':'c_medium-mandel-rot.webp','medium|mandel|farbe|bordeaux|none':'13','medium|mandel|farbe|rosa|none':'14','medium|mandel|farbe|schwarz|none':'15','medium|mandel|farbe|flieder|none':'16','medium|mandel|farbe|aqua|none':'17'};
+ 'medium|mandel|farbe|rot|none':'c_medium-mandel-rot.webp','medium|mandel|farbe|bordeaux|none':'13','medium|mandel|farbe|rosa|none':'14','medium|mandel|farbe|schwarz|none':'15','medium|mandel|farbe|flieder|none':'16','medium|mandel|farbe|aqua|none':'set_17_v3.webp'};
 /* Nichts ist vorausgewählt; ein zweiter Klick nimmt die Wahl zurück. Nichts wird zwischen Besuchen gespeichert. */
 const AXES=['len','form','fin','col','fx','fb','ft','dz','tn'];
 const PREF={len:'medium',form:'mandel',fin:'farbe',col:'nude',fx:'none',fb:'nude',ft:'weiss',dz:'none'};   /* nur für das Bild, solange nichts gewählt ist */
@@ -4025,6 +4066,32 @@ if(document.documentElement.lang==='en')window.__konfLang('en');
   const place=()=>{if(mq.matches){if(res.parentNode!==stage)kopie.after(res);const gw=grid.clientWidth,sw=stage.clientWidth;res.style.width=gw+'px';res.style.marginLeft=((sw-gw)/2)+'px';const acts=document.querySelector('#setActs');if(acts&&acts.parentNode===stage)home.appendChild(acts)}else{res.style.width='';res.style.marginLeft='';if(res.parentNode!==home)home.insertBefore(res,next)}};
   place();mq.addEventListener('change',place);addEventListener('resize',place);
 })();
+</script>
+
+<script>/* 27.11 patch30 bg-Schalter (nur Entwurf) */
+(()=>{const h=document.documentElement,q=new URLSearchParams(location.search).get('bg');let v='jetzt';try{v=sessionStorage.getItem('gn_bg')||v}catch(e){}if(q)v=q==='hell'?'hell':'jetzt';
+ const set=x=>{v=x;h.classList.toggle('bg-hell',x==='hell');try{sessionStorage.setItem('gn_bg',x)}catch(e){}b.querySelectorAll('button').forEach(k=>k.classList.toggle('on',k.dataset.v===x))};
+ const b=document.createElement('div');b.className='bgschalter';b.setAttribute('role','group');b.setAttribute('aria-label','Hintergrund');
+ b.innerHTML='<span>Hintergrund</span><button type="button" data-v="jetzt">wie jetzt</button><button type="button" data-v="hell">heller</button>';
+ b.addEventListener('click',e=>{const k=e.target.closest('button');if(k)set(k.dataset.v)});(document.getElementById('hero')||document.body).appendChild(b);set(v)})();
+</script>
+
+<script>/* 27.11 patch31 lay-Schalter (nur Entwurf) */
+(()=>{const at=document.getElementById('atelier'),grid=document.getElementById('setgrid'),head=at&&at.querySelector('.sec-head'),src=at&&at.querySelector('.set-grid>div:last-child .result');if(!at||!grid||!head||!src)return;
+ const lp=document.createElement('div');lp.id='layPreis';lp.innerHTML='<div class="lp-k">Ihr Set</div><div class="result" aria-hidden="true"></div>';grid.insertBefore(lp,grid.children[1]);
+ const card=lp.querySelector('.result');const sync=()=>{card.innerHTML=src.innerHTML.replace(/ id="[^"]*"/g,'')};sync();
+ new MutationObserver(sync).observe(src,{subtree:true,childList:true,characterData:true,attributes:true});
+ const L=['jetzt','mitte','rechts','links'],N={jetzt:'wie jetzt',mitte:'Mitte',rechts:'rechts',links:'links'};
+ let v='jetzt';try{v=sessionStorage.getItem('gn_lay')||v}catch(e){}const q=new URLSearchParams(location.search).get('lay');if(q&&L.includes(q))v=q;
+ const b=document.createElement('div');b.className='layschalter';b.setAttribute('role','group');b.setAttribute('aria-label','Preis-Anordnung');
+ b.innerHTML='<span>Preis</span>'+L.map(x=>'<button type="button" data-v="'+x+'">'+N[x]+'</button>').join('');
+ const set=x=>{v=x;L.forEach(y=>at.classList.toggle('lay-'+y,y===x&&y!=='jetzt'));b.querySelectorAll('button').forEach(k=>k.classList.toggle('on',k.dataset.v===x));try{sessionStorage.setItem('gn_lay',x)}catch(e){}};
+ b.addEventListener('click',e=>{const k=e.target.closest('button');if(k)set(k.dataset.v)});
+ const h2=head.firstElementChild;head.appendChild(b);
+ const pos=()=>{const hr=head.getBoundingClientRect(),a=h2.getBoundingClientRect(),acts=head.querySelector('.set-acts'),c=acts?acts.getBoundingClientRect():null;
+  const left=a.right-hr.left+28,maxL=(c?c.left-hr.left:hr.width)-b.offsetWidth-16;b.style.left=Math.max(0,Math.min(left,maxL))+'px';
+  const ref=c||a;b.style.top=(ref.top-hr.top+(ref.height-b.offsetHeight)/2)+'px'};
+ pos();addEventListener('resize',pos);setTimeout(pos,400);setTimeout(pos,1500);set(v)})();
 </script>
 </body>
 </html>
